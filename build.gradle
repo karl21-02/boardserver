@@ -25,6 +25,11 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	implementation 'mysql:mysql-connector-java:8.0.33'
+	implementation group: 'org.springframwork.boot'
+	implementation group: 'org.springframework', name: 'spring-aop', version: '3.1.2'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

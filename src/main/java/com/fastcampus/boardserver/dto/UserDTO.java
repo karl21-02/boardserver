@@ -3,7 +3,6 @@ package com.fastcampus.boardserver.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -11,10 +10,34 @@ import java.util.Date;
 @Setter
 @ToString
 public class UserDTO {
-    private int id;
+    public enum Status {
+        DEFAULT, ADMIN, DELETED
+    }
+    private Integer id;
     private String userId;
     private String password;
-    private String nickname;
+    private String nickName;
     private boolean isAdmin;
     private Date createTime;
+    private boolean isWithDraw;
+    private Status status;
+    private Date updateTime;
+
+    public UserDTO(){
+    }
+
+    public UserDTO(String id, String password, String name, String phone, String address, Status status, Date createTime, Date updateTime, boolean isAdmin) {
+        this.userId = id;
+        this.password = password;
+        this.nickName = name;
+        this.status = status;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.isAdmin = isAdmin;
+    }
+
+    public static boolean hasNullDataBeforeSignup(UserDTO userDTO) {
+        return userDTO.getUserId() == null || userDTO.getPassword() == null
+                || userDTO.getNickName() == null;
+    }
 }

@@ -1,16 +1,19 @@
 package com.fastcampus.boardserver.service;
 
-public interface UserServiceImpl {
 
-    void register(UsreDTO userProfile);
+import com.fastcampus.boardserver.dto.UserDTO;
+
+public interface UserService {
+
+    void register(UserDTO userProfile);
 
     UserDTO login(String id, String password);
 
-    boolean isDuplicateId(String id);
+    boolean isDuplicatedId(String id);
 
     UserDTO getUserInfo(String userId);
 
     void updatePassword(String id, String beforePassword, String afterPassword);
 
-    void deleteId(String id, String password);
+    void deleteId(String id, String passWord);
 }
