@@ -27,8 +27,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
 	implementation 'mysql:mysql-connector-java:8.0.33'
-	implementation group: 'org.springframwork.boot'
-	implementation group: 'org.springframework', name: 'spring-aop', version: '3.1.2'
+	compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.1.2'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
