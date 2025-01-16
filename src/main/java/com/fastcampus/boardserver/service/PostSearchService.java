@@ -1,5 +1,6 @@
 package com.fastcampus.boardserver.service;
 
+
 import com.fastcampus.boardserver.dto.PostDTO;
 import com.fastcampus.boardserver.dto.request.PostSearchRequest;
 
