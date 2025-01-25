@@ -19,6 +19,7 @@ public class PostSearchServiceImpl implements PostSearchService {
     @Autowired
     private PostSearchMapper productSearchMapper;
 
+
     @Cacheable(value = "getPosts", key = "'getPosts' + #postSearchRequest.getName() + #postSearchRequest.getCategoryId()")
     @Override
     public List<PostDTO> getPosts(PostSearchRequest postSearchRequest) {
