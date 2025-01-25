@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
@@ -22,4 +23,5 @@ public class PostDTO {
     private Integer userId;
     private Integer fileId;
     private Date updateTime;
+    private List<TagDTO> tagDTOList; // 게시글 저장시 태그 정보도 함께 저장
 }
