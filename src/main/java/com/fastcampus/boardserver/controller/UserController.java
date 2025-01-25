@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @PostMapping("sign-in")
-    public HttpStatus login(@RequestBody UserLoginRequest loginRequest,
-                            HttpSession session) {
+    public ResponseEntity<ResponseEntity<LoginResponse>> login(@RequestBody UserLoginRequest loginRequest,
+                                                               HttpSession session) {
         ResponseEntity<LoginResponse> responseEntity = null;
         String userId = loginRequest.getUserId();
         String password = loginRequest.getPassword();
@@ -48,7 +48,7 @@ public class UserController {
         String id = userInfo.getUserId().toString();
 
         if (userInfo == null) {
-            return HttpStatus.NOT_FOUND;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (userInfo != null) {
             LoginResponse loginResponse = LoginResponse.success(userInfo);
             if (userInfo.getStatus() == (UserDTO.Status.ADMIN))
@@ -61,13 +61,15 @@ public class UserController {
             throw new RuntimeException("Login Error! 유저 정보가 없거나 지워진 유저 정보입니다.");
         }
 
-        return HttpStatus.OK;
+        return ResponseEntity.ok(responseEntity);
     }
 
     @GetMapping("my-info")
     public UserInfoResponse memberInfo(HttpSession session) {
         String id = SessionUtil.getLoginMemberId(session);
-        if (id == null) id = SessionUtil.getLoginAdminId(session);
+        if (id == null) {
+            id = SessionUtil.getLoginAdminId(session);
+        }
         UserDTO memberInfo = userService.getUserInfo(id);
         return new UserInfoResponse(memberInfo);
     }

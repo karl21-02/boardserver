@@ -2,6 +2,7 @@ package com.fastcampus.boardserver.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Builder
@@ -11,14 +12,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDTO {
-    private int id;
+    private Integer id;
     private String name;
-    private int isAdmin;
+    private Integer isAdmin;
     private String contents;
     private Date createTime;
-    private int views;
-    private int categoryId;
-    private int userId;
-    private int fileId;
+    private Integer views;
+    private Integer categoryId;
+    private Integer userId;
+    private Integer fileId;
     private Date updateTime;
 }
