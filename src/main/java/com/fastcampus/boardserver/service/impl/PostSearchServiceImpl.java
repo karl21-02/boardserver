@@ -31,4 +31,15 @@ public class PostSearchServiceImpl implements PostSearchService {
         }
         return postDTOList;
     }
+
+    @Override
+    public List<PostDTO> getPostByTag(String tagName) {
+        List<PostDTO> postDTOList = null;
+        try {
+            postDTOList = productSearchMapper.getPostByTag(tagName);
+        } catch (RuntimeException e) {
+            log.error("getPostByTag 실패");
+        }
+        return postDTOList;
+    }
 }
