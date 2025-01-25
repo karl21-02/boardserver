@@ -47,12 +47,12 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 아이디 중복 확인
-     * @param id
+     * @param userId
      * @return
      */
     @Override
-    public boolean isDuplicatedId(String id) {
-        return userProfileMapper.idCheck(id) == 1;
+    public boolean isDuplicatedId(String userId) {
+        return userProfileMapper.idCheck(userId) == 1;
     }
 
     @Override

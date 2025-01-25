@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 public class UserDeleteId {
     @NonNull
-    private String id;
+    private String userId;
     @NonNull
     private String password;
 }

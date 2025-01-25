@@ -23,7 +23,7 @@ public interface UserProfileMapper {
     public UserDTO findByUserIdAndPassword(@Param("userId") String userId,
                                            @Param("password") String password);
 
-    int idCheck(String id);
+    int idCheck(@Param("userId") String userId);
 
     public int updatePassword(UserDTO userDTO);
 }
