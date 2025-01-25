@@ -32,7 +32,7 @@ public class RedisConfig {
     private String redisPwd;
 
     @Value("${expire.defaultTime}")
-    private long defaultExpireSecond;
+    private Long defaultExpireSecond;
 
     @Bean
     public ObjectMapper objectMapper() {

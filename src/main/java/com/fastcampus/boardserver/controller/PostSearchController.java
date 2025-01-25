@@ -24,7 +24,7 @@ public class PostSearchController {
 
     @PostMapping
     public PostSearchResponse search(@RequestBody PostSearchRequest postSearchRequest) {
-        List<PostDTO> postDTOList = postSearchService.getProducts(postSearchRequest);
+        List<PostDTO> postDTOList = postSearchService.getPosts(postSearchRequest);
         return new PostSearchResponse(postDTOList);
     }
 

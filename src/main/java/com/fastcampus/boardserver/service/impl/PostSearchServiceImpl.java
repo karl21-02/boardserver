@@ -19,11 +19,9 @@ public class PostSearchServiceImpl implements PostSearchService {
     @Autowired
     private PostSearchMapper productSearchMapper;
 
-//    @Cacheable(
-//            value = "getProducts",
-//            key = "'getProducts' + #postSearchRequest.getName() + #postSearchRequest.getCategoryId()")
+    @Cacheable(value = "getPosts", key = "'getProducts' + #postSearchRequest.getName() + #postSearchRequest.categoryId()")
     @Override
-    public List<PostDTO> getProducts(PostSearchRequest postSearchRequest) {
+    public List<PostDTO> getPosts(PostSearchRequest postSearchRequest) {
         List<PostDTO> postDTOList = null;
         try {
             postDTOList = productSearchMapper.selectPosts(postSearchRequest);
