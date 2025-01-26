@@ -32,7 +32,7 @@ public class CategoryController {
     @LoginCheck(type = LoginCheck.UserType.ADMIN)
     public void updateCategory(String accountId,
                                @PathVariable(name="categoryId") int categoryId,
-                                @RequestBody CategoryRequest categoryRequest) {
+                               @RequestBody CategoryRequest categoryRequest) {
         CategoryDTO categoryDTO = new CategoryDTO(categoryId, categoryRequest.getName(), CategoryDTO.SortStatus.NEWEST, 10, 1);
         categoryService.update(categoryDTO);
     }
