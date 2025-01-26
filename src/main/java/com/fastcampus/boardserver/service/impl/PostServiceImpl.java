@@ -41,7 +41,13 @@ public class PostServiceImpl implements PostService {
         postDTO.setCreateTime(new Date());
 
         if(memberInfo != null) {
-            postMapper.register(postDTO);
+            try {
+                postMapper.register(postDTO);
+            }
+            catch (RuntimeException e) {
+                log.error("register ERROR! {}", postDTO);
+                throw new RuntimeException("register ERROR! 게시글 등록 메서드를 확인해주세요" + postDTO);
+            }
             Integer postId = postDTO.getId();
             for(int i=0; i<postDTO.getTagDTOList().size(); i++) {
                 TagDTO tagDTO = postDTO.getTagDTOList().get(i);
@@ -58,14 +64,27 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDTO> getMyPosts(int accountId) {
-        List<PostDTO> postDtoList = postMapper.selectMyProducts(accountId);
+        List<PostDTO> postDtoList = null;
+        try {
+            postMapper.selectMyProducts(accountId);
+        }
+        catch (RuntimeException e) {
+            log.error("register ERROR! {}", accountId);
+            throw new RuntimeException("getMyPosts ERROR! 상품 조회 메서드를 확인해주세요" + accountId);
+        }
         return postDtoList;
     }
 
     @Override
     public void updatePosts(PostDTO postDTO) {
         if(postDTO!= null && postDTO.getId() != 0) {
-            postMapper.updatePosts(postDTO);
+            try {
+                postMapper.updatePosts(postDTO);
+            }
+            catch (RuntimeException e) {
+                log.error("update ERROR! {}", postDTO);
+                throw new RuntimeException("update ERROR! 게시글 수정 메서드를 확인해주세요" + postDTO);
+            }
         }
         else {
             log.error("update ERROR! {}", postDTO);
@@ -76,7 +95,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePosts(int userId, int postId) {
         if(userId != 0 && postId != 0) {
-            postMapper.deletePosts(postId);
+            try {
+                postMapper.deletePosts(postId);
+            }
+            catch (RuntimeException e) {
+                log.error("delete ERROR! {}", postId);
+                throw new RuntimeException("delete ERROR! 게시글 삭제 메서드를 확인해주세요" + postId);
+            }
         }
         else {
             log.error("delete ERROR! {}", postId);
