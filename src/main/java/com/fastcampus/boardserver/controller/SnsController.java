@@ -1,14 +1,12 @@
 package com.fastcampus.boardserver.controller;
 
 import com.fastcampus.boardserver.config.AWSConfig;
+import com.fastcampus.boardserver.service.SlackService;
 import com.fastcampus.boardserver.service.SnsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.model.*;
@@ -20,10 +18,12 @@ import java.util.Map;
 public class SnsController {
     private final AWSConfig awsConfig;
     private final SnsService snsService;
+    private final SlackService slackService;
 
-    public SnsController(AWSConfig awsConfig, SnsService snsService) {
+    public SnsController(AWSConfig awsConfig, SnsService snsService, SlackService slackService) {
         this.awsConfig = awsConfig;
         this.snsService = snsService;
+        this.slackService = slackService;
     }
 
     /**
@@ -96,5 +96,11 @@ public class SnsController {
         return new ResponseStatusException(
                 HttpStatus.INTERNAL_SERVER_ERROR, snsResponse.sdkHttpResponse().statusText().get()
         );
+    }
+
+    //slack
+    @GetMapping("/slack/error")
+    public void error() {
+        slackService.sendSlackMessage("패스트 캠퍼스 게시판 프로젝트 슬랙 에러 테스트", "error");
     }
 }
