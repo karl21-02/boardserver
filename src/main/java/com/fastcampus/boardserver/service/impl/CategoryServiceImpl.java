@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void update(CategoryDTO categoryDTO) {
-        if(categoryDTO != null) {
+        if(categoryDTO != null && categoryDTO.getName() != null) {
             try {
                 categoryMapper.updateCategory(categoryDTO);
             }

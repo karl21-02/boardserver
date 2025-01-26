@@ -1,6 +1,7 @@
 package com.fastcampus.boardserver.exception.handler;
 
 import com.fastcampus.boardserver.dto.response.CommonResponse;
+import com.fastcampus.boardserver.exception.BoardServerException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(commonResponse, new HttpHeaders(), commonResponse.getStatus());
     }
 
-    @ExceptionHandler({RuntimeException.class})
+    @ExceptionHandler({BoardServerException.class})
     public ResponseEntity<Object> handlerBoardServerException(RuntimeException e) {
         CommonResponse commonResponse = new CommonResponse(HttpStatus.OK, "BoardServerException", e.getMessage(), e.getMessage());
         return new ResponseEntity<>(commonResponse, new HttpHeaders(), commonResponse.getStatus());
